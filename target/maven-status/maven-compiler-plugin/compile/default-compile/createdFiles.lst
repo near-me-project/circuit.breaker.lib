@@ -1,0 +1,6 @@
+circuit\breaker\RestClient.class
+circuit\breaker\SilentResponse.class
+circuit\breaker\util\JsonMapper.class
+circuit\breaker\UriBuilder.class
+circuit\breaker\Action.class
+circuit\breaker\SilentRequest.class
