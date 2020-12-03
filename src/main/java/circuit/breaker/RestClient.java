@@ -4,28 +4,36 @@ import circuit.breaker.util.JsonMapper;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
 
-public class RestClient {
+import java.util.concurrent.CompletableFuture;
 
-    public SilentRequest GET(UriBuilder uriBuilder)  {
+public class RestClient {
+    public chain $ = new chain();
+
+    public SilentRequest GET(UriBuilder uriBuilder) {
         return new SilentRequest(Request.Get(uriBuilder.build()));
     }
 
-    public RestClient POST(String uri, Object dto) {
-        try {
-            Request
-                    .Post(uri)
-                    .bodyString(JsonMapper.parseAsString(dto), ContentType.APPLICATION_JSON)
-                    .connectTimeout(500)
-                    .execute();
-        } catch (Exception e) {
-            System.out.println("Failed to make request: " + e.getMessage());
-        }
-        return this;
+    public SilentRequest GET(String uri) {
+        return new SilentRequest(Request.Get(uri));
     }
 
-    public void ifFail(Action action) {
-        try {
-            action.act();
-        } catch (Exception e) {}
+    public class chain {
+
+        public CompletableFuture<SilentResponse> GET(String uri) {
+            return CompletableFuture.supplyAsync(() -> new SilentRequest(Request.Get(uri)).executeSilent());
+        }
+
+        public chain POST(String uri, Object dto) {
+            try {
+                Request
+                        .Post(uri)
+                        .bodyString(JsonMapper.parseAsString(dto), ContentType.APPLICATION_JSON)
+                        .connectTimeout(500)
+                        .execute();
+            } catch (Exception e) {
+                System.out.println("Failed to make request: " + e.getMessage());
+            }
+            return this;
+        }
     }
 }

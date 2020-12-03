@@ -1,6 +1,6 @@
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\RestClient.java
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\Action.java
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\util\JsonMapper.java
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\SilentRequest.java
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\UriBuilder.java
-D:\java_projects\near.me.project\circuit.breaker\src\main\java\core\SilentResponse.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\RestClient.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\UriBuilder.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\SilentRequest.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\Action.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\SilentResponse.java
+D:\java_projects\near.me.project\circuit.breaker\src\main\java\circuit\breaker\util\JsonMapper.java

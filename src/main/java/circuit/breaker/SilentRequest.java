@@ -19,7 +19,8 @@ public class SilentRequest {
     public SilentResponse executeSilent()  {
         try {
             return new SilentResponse(request.execute());
-        } catch (IOException e) {
+        } catch (Exception e) {
+            System.out.println(" >>>>>> ERROR: " + e.getMessage());
             return new SilentResponse();
         }
     }

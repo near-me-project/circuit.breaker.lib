@@ -7,25 +7,33 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class SilentResponse {
-    private Response execute;
+    private Response response;
 
-    public SilentResponse(Response execute) {
-        this.execute = execute;
+    public SilentResponse(Response response) {
+        this.response = response;
     }
 
     public SilentResponse() {
 
     }
 
-    public Optional<Response> getResponse() {
-        return Optional.ofNullable(execute);
+    public Optional<Integer> getStatusCode() {
+        return Optional.ofNullable(response).map(this::getStatusCode);
     }
 
-    public <T> Optional<T> getResponse(Class<T> tClass) {
-        if (execute == null) return Optional.empty();
+    private Integer getStatusCode(Response r) {
+        try {
+            return r.returnResponse().getStatusLine().getStatusCode();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <T> Optional<T> getContentAs(Class<T> tClass) {
+        if (response == null) return Optional.empty();
         else {
             try {
-                return Optional.of(JsonMapper.parse(execute.returnContent().asBytes(), tClass));
+                return Optional.of(JsonMapper.parse(response.returnContent().asBytes(), tClass));
             } catch (IOException e) {
                 return Optional.empty();
             }

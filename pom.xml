@@ -56,6 +56,7 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>D:\java_projects\near.me.project\local.repo</outputDirectory>
                 </configuration>
 
                 <executions>
