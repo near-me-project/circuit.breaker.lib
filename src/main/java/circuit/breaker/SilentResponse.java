@@ -34,7 +34,20 @@ public class SilentResponse {
         else {
             try {
                 return Optional.of(JsonMapper.parse(response.returnContent().asBytes(), tClass));
-            } catch (IOException e) {
+            } catch (Exception e) {
+                System.out.println("[CIRCUIT.BREAKER] [ERROR] " + e.getMessage());
+                return Optional.empty();
+            }
+        }
+    }
+
+    public Optional<String> getContentAsString() {
+        if (response == null) return Optional.empty();
+        else {
+            try {
+                return Optional.of(new String(response.returnContent().asBytes(), "UTF-8"));
+            } catch (Exception e) {
+                System.out.println("[CIRCUIT.BREAKER] [ERROR] " + e.getMessage());
                 return Optional.empty();
             }
         }

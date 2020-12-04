@@ -13,7 +13,11 @@ public class UriBuilder {
     }
 
     public UriBuilder setPath(String path) {
-        uriBuilder.setPath(path);
+        URI uri = URI.create(path);
+        uriBuilder.setScheme(uri.getScheme());
+        uriBuilder.setHost(uri.getHost());
+        uriBuilder.setPort(uri.getPort());
+        uriBuilder.setPath(uri.getPath());
         return this;
     }
 

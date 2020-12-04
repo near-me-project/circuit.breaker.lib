@@ -20,7 +20,7 @@ public class SilentRequest {
         try {
             return new SilentResponse(request.execute());
         } catch (Exception e) {
-            System.out.println(" >>>>>> ERROR: " + e.getMessage());
+            System.out.println("[CIRCUIT.BREAKER] [ERROR] " + e.getMessage());
             return new SilentResponse();
         }
     }

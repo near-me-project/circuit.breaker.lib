@@ -7,7 +7,7 @@ import org.apache.http.entity.ContentType;
 import java.util.concurrent.CompletableFuture;
 
 public class RestClient {
-    public chain $ = new chain();
+    public Async async = new Async();
 
     public SilentRequest GET(UriBuilder uriBuilder) {
         return new SilentRequest(Request.Get(uriBuilder.build()));
@@ -17,23 +17,15 @@ public class RestClient {
         return new SilentRequest(Request.Get(uri));
     }
 
-    public class chain {
+    public class Async {
 
         public CompletableFuture<SilentResponse> GET(String uri) {
             return CompletableFuture.supplyAsync(() -> new SilentRequest(Request.Get(uri)).executeSilent());
         }
 
-        public chain POST(String uri, Object dto) {
-            try {
-                Request
-                        .Post(uri)
-                        .bodyString(JsonMapper.parseAsString(dto), ContentType.APPLICATION_JSON)
-                        .connectTimeout(500)
-                        .execute();
-            } catch (Exception e) {
-                System.out.println("Failed to make request: " + e.getMessage());
-            }
-            return this;
+        public CompletableFuture<SilentResponse> POST(String uri, Object dto) {
+            return CompletableFuture.supplyAsync(() ->
+                    new SilentRequest(Request.Post(uri).bodyString(JsonMapper.parseAsString(dto), ContentType.APPLICATION_JSON).connectTimeout(500)).executeSilent());
         }
     }
 }

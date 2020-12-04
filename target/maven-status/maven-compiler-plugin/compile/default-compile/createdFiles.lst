@@ -1,7 +1,7 @@
-circuit\breaker\RestClient$chain.class
 circuit\breaker\RestClient.class
 circuit\breaker\UriBuilder.class
 circuit\breaker\Action.class
 circuit\breaker\SilentRequest.class
 circuit\breaker\SilentResponse.class
+circuit\breaker\RestClient$Async.class
 circuit\breaker\util\JsonMapper.class
