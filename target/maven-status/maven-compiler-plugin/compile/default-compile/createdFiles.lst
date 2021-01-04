@@ -1,4 +1,6 @@
+circuit\breaker\config\ApplicationConfiguration.class
 circuit\breaker\RestClient.class
+circuit\breaker\util\JsonMapper$1.class
 circuit\breaker\UriBuilder.class
 circuit\breaker\Action.class
 circuit\breaker\SilentRequest.class
